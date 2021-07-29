@@ -10,6 +10,14 @@ namespace Dungeon
     {
         static void Main(string[] args)
         {
-        }
-    }
-}
+            //Homunculus 
+
+            //An ancient elf recruits you to help him reconnect with all his old human friends. Turns out they have all been dead for centuries and many are the subjects of the epics songs by bards.
+
+
+
+        }//END MAIN()
+
+    }//END CLASS
+
+}//END NAMESPACE
