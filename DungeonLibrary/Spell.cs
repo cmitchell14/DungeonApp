@@ -13,6 +13,7 @@ namespace DungeonLibrary
         Water,
         Wind,
         Heal,
+        Poison,
         SummonDragon,
         SummonBear,
         SummonPhoenix,

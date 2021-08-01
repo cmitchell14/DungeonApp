@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DungeonLibrary;
 
 namespace DungeonLibrary
 {
-    public class Monster : Character
+    public class Companion : Character
     {
+
         //fields
         private int _minDamage;
         private int _minMagicDamage;
 
         //Props
-        public int MonsterGold { get; set; }
         public int MaxDamage { get; set; }
-        public int MonsterLevel { get; set; }
-        public int goldDrop { get; set; }
-        public int MonsterXp { get; set; }
-        public string Description { get; set; }
+        public int PlayerLevel { get; set; }
         public int MaxMagicDamage { get; set; }
         public int MinMagicDamage
         {
@@ -38,21 +34,18 @@ namespace DungeonLibrary
             }//END set
         }///END MinDamage Prop
 
-        //CTORS
-        //FQCTOR
-        public Monster(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int initiative, int strength, int magicStrength, int maxDamage, int monsterXp, string description, int maxMagicDamage, int minDamage, int minMagicDamage, int monsterLevel, int  monsterGold)
-            : base(name, maxHealth, maxMana, hitChance, armor, health, mana, strength, magicStrength, initiative)
+        //CTOR
+
+        public Companion(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int initiative, int strength, int magicStrength, int maxDamage, int playerLevel, int maxMagicDamage, int minMagicDamage, int minDamage)
+            : base(name, maxHealth, maxMana, hitChance, armor, health, mana, initiative, strength, magicStrength)
         {
-            Description = description;
-            MonsterXp = monsterXp;
-            MaxMagicDamage = maxMagicDamage;
             MaxDamage = maxDamage;
+            PlayerLevel = playerLevel;
+            MaxMagicDamage = maxMagicDamage;
             MinMagicDamage = minMagicDamage;
             MinDamage = minDamage;
-            MonsterLevel = monsterLevel;
-            MonsterGold = monsterGold;
 
-            switch (MonsterLevel)
+            switch (PlayerLevel)
             {
                 case 1:
 
@@ -79,57 +72,52 @@ namespace DungeonLibrary
                     MagicStrength += 3;
                     break;
                 case 5:
-                    Strength += 4;
-                    Armor += 4;
-                    Initiative += 4;
-                    HitChance += 4;
-                    MagicStrength += 4;
-                    break;
-                case 6:
                     Strength += 5;
                     Armor += 5;
-                    Initiative += 6;
-                    HitChance += 6;
+                    Initiative += 5;
+                    HitChance += 5;
                     MagicStrength += 5;
                     break;
-                case 7:
-                    Strength += 8;
-                    Armor += 8;
-                    Initiative += 6;
-                    HitChance += 6;
-                    MagicStrength += 8;
-                    break;
-                case 8:
-                    Strength += 10;
-                    Armor += 10;
-                    Initiative += 7;
-                    HitChance += 7;
-                    MagicStrength += 10;
-                    break;
-                case 9:
-                    Strength += 12;
-                    Armor += 12;
+                case 6:
+                    Strength += 7;
+                    Armor += 7;
                     Initiative += 8;
                     HitChance += 8;
-                    MagicStrength += 12;
+                    MagicStrength += 7;
                     break;
-                case 10:
+                case 7:
+                    Strength += 10;
+                    Armor += 10;
+                    Initiative += 8;
+                    HitChance += 8;
+                    MagicStrength += 10;
+                    break;
+                case 8:
                     Strength += 13;
                     Armor += 13;
                     Initiative += 9;
                     HitChance += 9;
                     MagicStrength += 13;
                     break;
-            }//END SWITCH MonsterLevel
+                case 9:
+                    Strength += 16;
+                    Armor += 16;
+                    Initiative += 10;
+                    HitChance += 10;
+                    MagicStrength += 16;
+                    break;
+                case 10:
+                    Strength += 20;
+                    Armor += 20;
+                    Initiative += 12;
+                    HitChance += 12;
+                    MagicStrength += 20;
+                    break;
+            }//END SWITCH PlayerLevel
 
         }//END FQCTOR
 
         //Methods
-        public override string ToString()
-        {
-            return string.Format($"  {Name}\n  {Description}\n  {(Health == MaxHealth ? "  It's at Full-Strength" : Health <= MaxHealth * .25 ? "  It's is nearing death!!" : "  It's is losing strength!")}");
-        }//End ToString()
-
         public override int CalcDamage()
         {
             return new Random().Next(MinDamage, MaxDamage + 1);
@@ -144,6 +132,10 @@ namespace DungeonLibrary
         {
             return new Random().Next(Armor - 4, Armor + 1);
         }//END CalcArmor()
+
+
+
+
 
     }//END CLASS
 

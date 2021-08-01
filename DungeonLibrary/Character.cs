@@ -15,6 +15,9 @@ namespace DungeonLibrary
 
         //props
         public string Name { get; set; }
+        public int Initiative { get; set; }
+        public int Strength { get; set; }
+        public int MagicStrength { get; set; }
         public int MaxHealth { get; set; }
         public int MaxMana { get; set; }
         public int HitChance { get; set; }
@@ -38,7 +41,7 @@ namespace DungeonLibrary
 
         //ctors
         //FQCTOR
-        public Character(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana)
+        public Character(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int initiative, int strength, int magicStrength)
         {
             Name = name;
             MaxHealth = maxHealth;
@@ -47,17 +50,16 @@ namespace DungeonLibrary
             Armor = armor;
             Health = health;
             Mana = mana;
+            Strength = strength;
+            MagicStrength = magicStrength;
+            Initiative = Initiative;
         }//END FQCTOR
 
         //Methods
-        public virtual int CalcArmor()
-        {
-            return Armor;
-        }//END Method CalcArmor
-        public virtual int CalcHitChance()
-        {
-            return HitChance;
-        }//END Method CalcHitChance
+        public abstract int CalcArmor();
+
+        public abstract int CalcHitChance();
+
         public abstract int CalcDamage(); //Method Stub
 
 
