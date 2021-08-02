@@ -17,12 +17,14 @@ namespace DungeonLibrary
             System.Threading.Thread.Sleep(40);
             if (diceRoll <= attacker.CalcHitChance())
             {
-                int damageDealt = attacker.CalcDamage() - defender.CalcArmor() / 5;
+                int damageDealt = attacker.CalcDamage() - defender.CalcArmor() / 4;
                 if (damageDealt <= 0)
                 {
                     damageDealt = 1;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{attacker.Name} hits {defender.Name} for {damageDealt} damage!!");
+                    defender.Health -= damageDealt;
+                    System.Threading.Thread.Sleep(2000);
                     Console.ForegroundColor = ConsoleColor.Black;
 
                 }
@@ -31,6 +33,7 @@ namespace DungeonLibrary
                     defender.Health -= damageDealt;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{attacker.Name} hits {defender.Name} for {damageDealt} damage!!");
+                    System.Threading.Thread.Sleep(2500);
                     Console.ForegroundColor = ConsoleColor.Black;
                 }//END IF damageDealt
                 
@@ -38,8 +41,11 @@ namespace DungeonLibrary
             else
             {
                 Console.WriteLine($"{attacker.Name} has missed.");
+                System.Threading.Thread.Sleep(2500);
             }//END else
         }//END Attack()
+
+
 
         public static void Battle(Player player, Monster monster)
         {

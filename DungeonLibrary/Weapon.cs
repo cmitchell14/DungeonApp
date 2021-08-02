@@ -40,7 +40,7 @@ namespace DungeonLibrary
         //methods
         public override string ToString()
         {
-            return string.Format(base.ToString() + $"Damage: {MinDamage}-{MaxDamage},\nBonus Hit Chance: {BonusHitChance}\n{(IsTwoHanded ? "This weapon is a Two-Handed Weapon." : "You can use this weapon with just one hand.")}");
+            return string.Format(base.ToString() + $"  Damage: {MinDamage}-{MaxDamage},\n  Bonus Hit Chance: {BonusHitChance}\n{(IsTwoHanded ? "  This weapon is a Two-Handed Weapon." : "  You can use this weapon with just one hand.")}");
         }
 
     }//END CLASS

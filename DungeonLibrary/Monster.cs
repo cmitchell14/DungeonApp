@@ -14,10 +14,8 @@ namespace DungeonLibrary
         private int _minMagicDamage;
 
         //Props
-        public int MonsterGold { get; set; }
         public int MaxDamage { get; set; }
         public int MonsterLevel { get; set; }
-        public int goldDrop { get; set; }
         public int MonsterXp { get; set; }
         public string Description { get; set; }
         public int MaxMagicDamage { get; set; }
@@ -40,7 +38,7 @@ namespace DungeonLibrary
 
         //CTORS
         //FQCTOR
-        public Monster(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int initiative, int strength, int magicStrength, int maxDamage, int monsterXp, string description, int maxMagicDamage, int minDamage, int minMagicDamage, int monsterLevel, int  monsterGold)
+        public Monster(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int initiative, int strength, int magicStrength, int maxDamage, int monsterXp, string description, int maxMagicDamage, int minDamage, int minMagicDamage, int monsterLevel)
             : base(name, maxHealth, maxMana, hitChance, armor, health, mana, strength, magicStrength, initiative)
         {
             Description = description;
@@ -50,7 +48,6 @@ namespace DungeonLibrary
             MinMagicDamage = minMagicDamage;
             MinDamage = minDamage;
             MonsterLevel = monsterLevel;
-            MonsterGold = monsterGold;
 
             switch (MonsterLevel)
             {
@@ -127,12 +124,12 @@ namespace DungeonLibrary
         //Methods
         public override string ToString()
         {
-            return string.Format($"  {Name}\n  {Description}\n  {(Health == MaxHealth ? "  It's at Full-Strength" : Health <= MaxHealth * .25 ? "  It's is nearing death!!" : "  It's is losing strength!")}");
+            return string.Format($"  Lvl {MonsterLevel} {Name}\n  {Description}\n  {(Health == MaxHealth ? "  It's at Full-Strength" : Health <= MaxHealth * .25 ? "  It's is nearing death!!" : "  It's is losing strength!")}");
         }//End ToString()
 
         public override int CalcDamage()
         {
-            return new Random().Next(MinDamage, MaxDamage + 1);
+            return new Random().Next(MinDamage + Strength, MaxDamage + 1 + Strength);
         }//END CalcDamage()
 
         public override int CalcHitChance()

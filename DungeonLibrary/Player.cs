@@ -16,15 +16,17 @@ namespace DungeonLibrary
         public Weapon EquippedWeapon { get; set; }
         public Armor EquippedArmor { get; set; }
         public int PlayerLevel { get; set; }
+        public int PlayerXp { get; set; }
 
         //ctors
-        public Player(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int strength, int magicStrength, Race playerRace, Weapon equippedWeapon, Armor equippedArmor, int playerLevel, int initiative)
+        public Player(string name, int maxHealth, int maxMana, int hitChance, int armor, int health, int mana, int strength, int magicStrength, Race playerRace, Weapon equippedWeapon, Armor equippedArmor, int playerLevel, int initiative, int playerXp)
             : base(name, maxHealth, maxMana, hitChance, armor, health, mana, strength, magicStrength, initiative)
         {
             PlayerRace = playerRace;
             EquippedWeapon = equippedWeapon;
             EquippedArmor = equippedArmor;
             PlayerLevel = playerLevel;
+            PlayerXp = PlayerXp;
 
 
             switch (PlayerRace)
@@ -162,7 +164,7 @@ namespace DungeonLibrary
         //methods
         public override string ToString()
         {
-            return string.Format($"Name: {Name} the {PlayerRace}\nHP: {Health}/{MaxHealth}     Mana: {Mana}/{MaxMana}\nEquipped Weapon: {EquippedWeapon}          Equipped Armor: {EquippedArmor}\nOverall Armor Rating: {Armor}\nHit Chance: {HitChance}");
+            return string.Format($"  Name: {Name} the {PlayerRace}\n  HP: {Health}/{MaxHealth}     Mana: {Mana}/{MaxMana}\n  Equipped Weapon: {EquippedWeapon}\n  Equipped Armor: {EquippedArmor}\n  Overall Armor Rating: {Armor}\n  Hit Chance: {HitChance}");
         }//END ToString()
 
         public override int CalcArmor()

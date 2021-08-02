@@ -29,7 +29,7 @@ namespace DungeonLibrary
 
         public override string ToString()
         {
-            return string.Format(base.ToString() + $"\nArmor: {ArmorRank}\n{(BonusHitChance > 0 ? $"Bonus Hit Chance: {BonusHitChance}" : "")}");
+            return string.Format(base.ToString() + $"\n  Armor: {ArmorRank}\n{(BonusHitChance > 0 ? $"Bonus Hit Chance: {BonusHitChance}" : "")}");
         }
 
 

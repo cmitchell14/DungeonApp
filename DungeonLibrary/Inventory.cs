@@ -10,7 +10,6 @@ namespace DungeonLibrary
     {
 
         //fields
-        private int _itemQuantity;
 
         //props
         public string Name { get; set; }
@@ -29,7 +28,7 @@ namespace DungeonLibrary
         //methods
         public override string ToString()
         {
-            return string.Format($"{Name}\n{Description}\n{(IsEquippable ? "Item is Equippable" : "")}");
+            return string.Format($"  {Name}:   {Description}\n  {(IsEquippable ? "Item is Equippable" : "")}");
         }//END ToString()
 
     }//END CLASS
