@@ -28,7 +28,7 @@ namespace DungeonLibrary
         //methods
         public override string ToString()
         {
-            return string.Format($"  {Name}:   {Description}\n  {(IsEquippable ? "Item is Equippable" : "")}");
+            return string.Format($"  {Name} - {Description}\n  {(IsEquippable ? "Item is Equippable" : "")}");
         }//END ToString()
 
     }//END CLASS

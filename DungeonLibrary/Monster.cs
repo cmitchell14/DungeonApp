@@ -124,7 +124,7 @@ namespace DungeonLibrary
         //Methods
         public override string ToString()
         {
-            return string.Format($"  Lvl {MonsterLevel} {Name}\n  {Description}\n  {(Health == MaxHealth ? "  It's at Full-Strength" : Health <= MaxHealth * .25 ? "  It's is nearing death!!" : "  It's is losing strength!")}");
+            return string.Format($"  Lvl {MonsterLevel} {Name}\n  {Description}\n  {(Health == MaxHealth ? "  It's at Full-Strength" :  Health <= 0 ? "  This creature has perished" : Health <= MaxHealth * .25 ? "  It is nearing death!!" : "  It's losing strength")}");
         }//End ToString()
 
         public override int CalcDamage()
