@@ -20,8 +20,6 @@ namespace Dungeon
             Weapon starterWeapon = new Weapon("Baby Dagger", true, "The World's smallest dagger... basically garbage.", 5, 2, false, 0, 0);
             Armor starterArmor = new Armor("Rags", true, "  Literally a wash rag thrown over your shoulder... \n  more likely to make you sick than block a blow.", 1, 0);
 
-            //Companion Variables
-
             //Enemy Variables
 
             //Title Screen & Intro
@@ -29,10 +27,16 @@ namespace Dungeon
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
-            Console.WriteLine(@"                                                     WELCOME TO:                                                                                              ╔╦╗┬ ┬┌─┐  ╔╗ ┬  ┬ ┬┌┐┌┌┬┐┌─┐┬─┐┌─┐┬ ┬┌─┐  
+            Console.WriteLine(@"     
+
+
+                                                    WELCOME TO:      
+
+                                      ╔╦╗┬ ┬┌─┐  ╔╗ ┬  ┬ ┬┌┐┌┌┬┐┌─┐┬─┐┌─┐┬ ┬┌─┐  
                                        ║ ├─┤├┤   ╠╩╗│  │ ││││ ││├┤ ├┬┘│ ││ │└─┐  
                                        ╩ ┴ ┴└─┘  ╚═╝┴─┘└─┘┘└┘─┴┘└─┘┴└─└─┘└─┘└─┘");
-            Console.WriteLine(@"                             ╔═╗┌─┐┌─┐┌─┐┌─┐┌─┐┌┬┐┌─┐┌─┐  ┌─┐┌─┐  ┌┬┐┬ ┬┌─┐  ┌─┐┬  ┌─┐
+            Console.WriteLine(@"                           
+                             ╔═╗┌─┐┌─┐┌─┐┌─┐┌─┐┌┬┐┌─┐┌─┐  ┌─┐┌─┐  ┌┬┐┬ ┬┌─┐  ┌─┐┬  ┌─┐
                              ║╣ └─┐│  ├─┤├─┘├─┤ ││├┤ └─┐  │ │├┤    │ ├─┤├┤   ├┤ │  ├┤ 
                              ╚═╝└─┘└─┘┴ ┴┴  ┴ ┴─┴┘└─┘└─┘  └─┘└     ┴ ┴ ┴└─┘  └─┘┴─┘└ ");
 
@@ -122,14 +126,12 @@ namespace Dungeon
 
             //Player Creation
             Player player = new Player(playerName, 60, 60, 60, 15, 60, 60, 5, 5, playerRace, starterWeapon, starterArmor, 1, 5, 0);
-            Companion elfCompanion = new Companion("Snushbat", 50, 20, 70, 85, 645, 0, 8, 10, 1, 19, player.PlayerLevel, 1, 1, 12);
-
 
             //New Title Creation
             Console.Title = $" {player.Name} the {playerRace}   HP: {player.Health}/{player.MaxHealth}  MP: {player.Mana}/{player.MaxMana}                           {gameTitle}                             Player Level: {player.PlayerLevel}    XP: {player.PlayerXp}";
 
             //Starter Enemy
-            Monster homunculus = new Monster("Homunculus", 15, 0, 60, 4, 15, 0, 4, 4/*strength*/, 0, 4 /*MaxDamage*/ , 5, "A small humanoid, not capable of much harm.", 0, 1 /*TODO MinDamage*/, 0, new Random().Next(1, player.PlayerLevel > 1 ? player.PlayerLevel : 1));
+            Monster homunculus = new Monster("Homunculus", 15, 0, 60, 4, 15, 0, 2/*Initiative*/, 4/*strength*/, 0, 4 /*MaxDamage*/ , 5, "A small humanoid, not capable of much harm.", 0, 1 /*TODO MinDamage*/, 0, new Random().Next(1, player.PlayerLevel > 1 ? player.PlayerLevel : 1));
 
             Console.Clear();
 
@@ -154,7 +156,7 @@ namespace Dungeon
             do
             {
                 Console.Title = $" {player.Name} the {playerRace}   HP: {player.Health}/{player.MaxHealth}  MP: {player.Mana}/{player.MaxMana}                           {gameTitle}                             Player Level: {player.PlayerLevel}    XP: {player.PlayerXp}";
-                
+
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.Clear();
@@ -244,9 +246,119 @@ namespace Dungeon
             Console.Title = $" {player.Name} the {playerRace}   HP: {player.Health}/{player.MaxHealth}  MP: {player.Mana}/{player.MaxMana}                           {gameTitle}                             Player Level: {player.PlayerLevel}    XP: {player.PlayerXp}";
 
             Console.WriteLine($"  \n\n  That was great {player.Name}!!  Not at all impressive \n  considering your competition, but at least I know \n  you can stab a tiny helpless being to death!!");
-            Console.WriteLine($"\n\n  Excuse me for not introducing myself earlier.\n  My name is {elfCompanion.Name}.  I'm looking for some\n  of my friends.  They are all helpless humans.\n  Would you mind helping me find them?\n\n");
+            Console.WriteLine($"\n\n  Excuse me for not introducing myself earlier.\n  My name is Snushbat.  I'm looking for some\n  of my friends.  They are all helpless humans.\n  Would you mind helping me find them?\n");
 
-            //Homunculus 
+            //Companion creation
+            Companion companion = new Companion("Snushbat", 895, 150, 80, 60, 895, 150, 9, 7, 3, 12, player.PlayerLevel, 8, 4, 4);
+
+            Console.WriteLine("\n\n  Of course you will.  You seem quite helpful,\n  and again, there is no way out of here without the help\n  of my friends.\n\n  Don't worry, I can fight too.  I'll show you...\n\n  Let's fight something a bit tougher.");
+
+            Console.Write("\n  Let's get that ");
+
+            Monster caveBear = new Monster("Cave Bear", 65, 0, 4, 4, 65 /*health*/, 0, 4, 6/*strength*/, 0, 8 /*MaxDamage*/, 10, "A small bear cub, with dull claws.", 0, 1 /*TODO MinDamage*/, 0, new Random().Next(1, player.PlayerLevel > 1 ? player.PlayerLevel : 1));
+            Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"{caveBear.Name} " + "!!");
+
+            System.Threading.Thread.Sleep(1500);
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("\n\n  Press any key to continue...");
+            Console.ReadKey(true);
+
+            bool exitBattle2 = false;
+
+            do
+            {
+                Console.Title = $" {player.Name} the {playerRace}   HP: {player.Health}/{player.MaxHealth}  MP: {player.Mana}/{player.MaxMana}                           {gameTitle}                             Player Level: {player.PlayerLevel}    XP: {player.PlayerXp}";
+
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Clear();
+                Console.WriteLine("\n\n  You're fighting a " + caveBear.Name);
+                Console.WriteLine("\n\nChoose an action:\n" +
+                   "A)ttack\n" +
+                   "F)lee\n" +
+                   "V)iew Stats\n" +
+                   "M)onster Stats");
+                ConsoleKey userChoice = Console.ReadKey(true).Key;
+
+                Console.Clear();
+
+                switch (userChoice)
+                {
+                    case ConsoleKey.A:
+                        Combat.Battle(player, companion, caveBear);
+                        if (caveBear.Health <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"You killed the {caveBear.Name}!!!\n\nKilling the {caveBear.Name} earned you {caveBear.MonsterXp} XP!!!");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            player.PlayerXp = player.PlayerXp + caveBear.MonsterXp;
+                            Console.WriteLine("\n  Press any key to continue...");
+                            Console.ReadKey(true);
+                            exitBattle2 = true;
+                        }
+                        break;
+                    case ConsoleKey.F:
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Clear();
+                        Console.WriteLine("RUN AWAY");
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine($"The {monster.Name} attacks you as your turn to flee!");
+                        Combat.Attack(monster, player);
+                        Console.WriteLine("\n  Press any key to continue...");
+                        Console.ReadKey(true);
+                        break;
+                    case ConsoleKey.V:
+                        Console.WriteLine(player);
+                        Console.WriteLine("\n  Press any key to continue...");
+                        Console.ReadKey(true);
+                        break;
+                    case ConsoleKey.M:
+                        Console.WriteLine(monster);
+                        Console.WriteLine("\n  Press any key to continue...");
+                        Console.ReadKey(true);
+                        break;
+                    case ConsoleKey.Escape:
+                        Console.WriteLine("You quit so soon?... Your cowardess saddens me...");
+                        exitBattle2 = true;
+                        break;
+                    default:
+                        Console.WriteLine("Thou hast choseneth an ivalideth option.");
+                        Console.WriteLine("\n  Press any key to continue...");
+                        Console.ReadKey(true);
+                        break;
+                }
+
+                if (player.Health < 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.Clear();
+                    Console.WriteLine($"  Sorry {player.Name}... You've been slain by the menacing {caveBear.Name}...\n\n\n\n\n\n\n\n");
+                    Console.WriteLine(@" 
+                           ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  
+                          ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+                         ▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+                         ░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  
+                         ░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+                          ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+                           ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+                           ░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ 
+                             ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     
+                                                         ░                  
+                                         
+
+                 ");
+
+                    Console.ReadKey(true);
+                    exitBattle2 = true;
+                }
+
+            } while (!exitBattle2);
+            Console.Title = $" {player.Name} the {playerRace}   HP: {player.Health}/{player.MaxHealth}  MP: {player.Mana}/{player.MaxMana}                           {gameTitle}                             Player Level: {player.PlayerLevel}    XP: {player.PlayerXp}";
+
+            Console.Clear();
+            Console.WriteLine("\n\n  See, that wasn't so bad.");
 
             //An ancient elf recruits you to help him reconnect with all his old human friends. 
             //Turns out they have all been dead for centuries and many are the subjects of the epics songs by bards.

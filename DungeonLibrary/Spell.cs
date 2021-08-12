@@ -14,11 +14,6 @@ namespace DungeonLibrary
         Wind,
         Heal,
         Poison,
-        SummonDragon,
-        SummonBear,
-        SummonPhoenix,
-        SummonBeaver,
-        SummonAngel
     }//END enum
 
 }//END NAMESPACE

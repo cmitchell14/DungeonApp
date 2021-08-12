@@ -33,15 +33,15 @@ namespace DungeonLibrary
                     defender.Health -= damageDealt;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{attacker.Name} hits {defender.Name} for {damageDealt} damage!!");
-                    System.Threading.Thread.Sleep(2500);
+                    System.Threading.Thread.Sleep(2000);
                     Console.ForegroundColor = ConsoleColor.Black;
                 }//END IF damageDealt
-                
+
             }//END If successful Attack
             else
             {
-                Console.WriteLine($"{attacker.Name} has missed.");
-                System.Threading.Thread.Sleep(2500);
+                Console.WriteLine($"{attacker.Name} has missed {defender.Name}.");
+                System.Threading.Thread.Sleep(2000);
             }//END else
         }//END Attack()
 
@@ -49,14 +49,77 @@ namespace DungeonLibrary
 
         public static void Battle(Player player, Monster monster)
         {
-            Attack(player, monster);
-            if (monster.Health > 0)
+            if (player.Initiative >= monster.Initiative)
+            {
+                Attack(player, monster);
+                if (monster.Health > 0)
+                {
+                    Attack(monster, player);
+                }
+            }
+            else
             {
                 Attack(monster, player);
+                if (player.Health > 0)
+                {
+                    Attack(player, monster);
+                }
+
             }//END if
         }//END Battle()
 
 
+
+        public static void Battle(Player player, Companion companion, Monster monster)
+        {
+            if (player.Initiative >= monster.Initiative && player.Initiative >= companion.Initiative)
+            {
+                Attack(player, monster);
+                if (monster.Health > 0)
+                {
+                    Attack(companion, monster);
+                    if (monster.Health > 0)
+                    {
+                        Character[] heroes = { player, companion };
+                        Random select = new Random();
+                        Attack(monster, heroes[select.Next(0, 2)]);  // Randomly selects player or companion to attack.
+                    }
+                    
+                }
+            }
+            else if (companion.Initiative > monster.Initiative)
+            {
+                Attack(companion, monster);
+                if (monster.Health > 0)
+                {
+                    Attack(player, monster);
+                    if (monster.Health > 0)
+                    {
+                        Character[] heroes = { player, companion };
+                        Random select = new Random();
+                        Attack(monster, heroes[select.Next(0, 2)]);
+                    }
+                    
+                }
+            }
+            else
+            {
+                Character[] heroes = { player, companion };
+                Random select = new Random();
+                Attack(monster, heroes[select.Next(0, 2)]);
+                if (player.Health > 0)
+                {
+                    Attack(player, monster);
+                    if (monster.Health > 0)
+                    {
+                        Attack(companion, monster);
+                    }
+                    
+                }
+            }
+        }//END 3 Person Battle()
+
     }//END CLASS
 
 }//END NAMESPACE
+
