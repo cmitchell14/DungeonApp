@@ -121,7 +121,8 @@ namespace Dungeon
             } while (raceMenu); //END Do Loop
 
             Console.WriteLine($"\n\n  {playerName} the {playerRace}!  I need your help...  and seeing \n  as how you're stuck here, you might as well come with me.");
-            System.Threading.Thread.Sleep(2000);
+            Console.WriteLine("\n\n  Please press any key to continue...");
+            Console.ReadKey(true);
 
 
             //Player Creation
@@ -136,7 +137,7 @@ namespace Dungeon
             Console.Clear();
 
             Console.WriteLine("\n\n  Hey, I need to know if you can fight...\n\n  Let's attack that little guy over there to practice.");
-            Console.WriteLine("\n  Press any key to continue");
+            Console.WriteLine("\n  Press any key to continue...");
             Console.ReadKey(true);
 
             //TODO - Copy this Monsters array to a later place.
@@ -368,8 +369,8 @@ namespace Dungeon
             Console.WriteLine("\n\n  Press any key to continue...");
             Console.ReadKey(true);
 
-            homunculus.Health = 15;
-            caveBear.Health = 30;
+            homunculus.Health = 80;
+            caveBear.Health = 10;
             caveBear.Initiative = 90;
 
             bool exitBattle3 = false;
@@ -395,7 +396,7 @@ namespace Dungeon
                 {
                     case ConsoleKey.A:
                         Combat.Battle(player, companion, caveBear, homunculus);
-                        if (caveBear.Health <= 0)
+                        if (caveBear.Health <= 0 && homunculus.Health <= 0)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"  You killed the {caveBear.Name} & the {homunculus.Name}!!!\n\n  You've earned {caveBear.MonsterXp + homunculus.MonsterXp} XP!!!");

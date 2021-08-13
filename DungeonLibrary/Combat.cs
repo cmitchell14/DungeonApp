@@ -404,81 +404,90 @@ namespace DungeonLibrary
                     if (player.Health > 0)
                     {
                         Attack(monsterTwo, heroes[select.Next(0, 2)]);
-                        if (player.Health > 0)   //Both monsters attacked and the player is still alive.
+                        if (player.Health > 0)
                         {
-                            Character[] baddies = { monster, monsterTwo };
-                            Random selectBad = new Random();
-                            Attack(companion, baddies[selectBad.Next(0, 2)]);
+                            bool exit2 = false;
+                            while (!exit2)
+                            {
+                                Console.Write($"\n  Select a Target:\n  1) {monster.Name}\n  2) {monsterTwo.Name}");
+                                ConsoleKey attackSel = Console.ReadKey(true).Key;
+                                Console.Clear();
+                                switch (attackSel)
+                                {
+                                    case ConsoleKey.D1:
+                                    case ConsoleKey.NumPad1:
+                                    case ConsoleKey.O:
+                                        Attack(player, monster);
+                                        if (monster.Health <= 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine($"\n  The {monster.Name} has perished\n");
+                                            Console.ForegroundColor = ConsoleColor.Black;
+                                            System.Threading.Thread.Sleep(1500);
+                                        }
+                                        exit2 = true;
+                                        break;
+                                    case ConsoleKey.D2:
+                                    case ConsoleKey.NumPad2:
+                                    case ConsoleKey.T:
+                                        Attack(player, monsterTwo);
+                                        if (monsterTwo.Health <= 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine($"\n  The {monsterTwo.Name} has perished\n");
+                                            Console.ForegroundColor = ConsoleColor.Black;
+                                            System.Threading.Thread.Sleep(1500);
+                                        }
+                                        exit2 = true;
+                                        break;
+                                    default:
+                                        Console.WriteLine("\n\n  You should probably attack one of the monsters...");
+                                        System.Threading.Thread.Sleep(1500);
+                                        break;
+                                }//END player attack option switch
+                            }//End player Attack loop
                             if (monster.Health > 0 && monsterTwo.Health > 0)
                             {
-                                bool exit2 = false;
-                                while (!exit2)
-                                {
-                                    Console.Write($"\n  Select a Target:\n  1) {monster.Name}\n  2) {monsterTwo.Name}");
-                                    ConsoleKey attackSel = Console.ReadKey(true).Key;
-                                    Console.Clear();
-                                    switch (attackSel)
-                                    {
-                                        case ConsoleKey.D1:
-                                        case ConsoleKey.NumPad1:
-                                        case ConsoleKey.O:
-                                            Attack(player, monster);
-                                            if (monster.Health <= 0)
-                                            {
-                                                Console.ForegroundColor = ConsoleColor.Green;
-                                                Console.WriteLine($"\n  The {monster.Name} has perished\n");
-                                                Console.ForegroundColor = ConsoleColor.Black;
-                                                System.Threading.Thread.Sleep(1500);
-                                            }
-                                            exit2 = true;
-                                            break;
-                                        case ConsoleKey.D2:
-                                        case ConsoleKey.NumPad2:
-                                        case ConsoleKey.T:
-                                            Attack(player, monsterTwo);
-                                            if (monsterTwo.Health <= 0)
-                                            {
-                                                Console.ForegroundColor = ConsoleColor.Green;
-                                                Console.WriteLine($"\n  The {monsterTwo.Name} has perished\n");
-                                                Console.ForegroundColor = ConsoleColor.Black;
-                                                System.Threading.Thread.Sleep(1500);
-                                            }
-                                            exit2 = true;
-                                            break;
-                                        default:
-                                            Console.WriteLine("\n\n  You should probably attack one of the monsters...");
-                                            System.Threading.Thread.Sleep(1500);
-                                            break;
-                                    }//END player attack option switch
-                                }//End player Attack loop
+                                Character[] baddies = { monster, monsterTwo };
+                                Random selectBad = new Random();
+                                Attack(companion, baddies[selectBad.Next(0, 2)]);
                             }
                             else if (monster.Health > 0)
                             {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"\n  The {monsterTwo.Name} has perished\n");
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                System.Threading.Thread.Sleep(1500);
-                                Attack(player, monster);
-                            } //End if only monster lives
+                                Attack(companion, monster);
+                                if (monster.Health <= 0)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"\n  The {monster.Name} has perished\n");
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    System.Threading.Thread.Sleep(1500);
+                                }
+                            }
                             else
                             {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"\n  The {monster.Name} has perished\n");
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                System.Threading.Thread.Sleep(1500);
-                                Attack(player, monsterTwo);
-                            } //End if only monsterTwo lives
-                        }//End if player still alive 2
-                    }//End if Player alive 1
-                }//End if both monsters still alive.
+                                Attack(companion, monsterTwo);
+                                if (monsterTwo.Health <= 0)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"\n  The {monsterTwo.Name} has perished\n");
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    System.Threading.Thread.Sleep(1500);
+                                }
+                            }
+
+                        }//END IF player alive.
+                    }
+                 
+                }
                 else if (monster.Health > 0)
                 {
                     Battle(player, companion, monster);
-                }//End if monster only one alive
+                }
                 else
                 {
                     Battle(player, companion, monsterTwo);
-                }//End if monsterTwo only one alive
+                }
+
             }// End if monster Initiative is highest.
 
         }//END 4 Person Battle()
