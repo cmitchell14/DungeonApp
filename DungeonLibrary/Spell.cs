@@ -13,7 +13,6 @@ namespace DungeonLibrary
         Water,
         Wind,
         Heal,
-        Poison,
     }//END enum
 
 }//END NAMESPACE

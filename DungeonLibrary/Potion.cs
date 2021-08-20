@@ -14,13 +14,15 @@ namespace DungeonLibrary
         //props
         public int HealthPotion { get; set; }
         public int ManaPotion { get; set; }
+        public int Quantity { get; set; }
 
         //ctors
-        public Potion(string name, bool isEquippable, string description, int addHealth, int addMana)
+        public Potion(string name, bool isEquippable, string description, int quantity, int addHealth, int addMana)
             :base(name, isEquippable, description)
         {
             HealthPotion = addHealth;
             ManaPotion = addMana;
+            Quantity = quantity;
         }
 
         //methods
@@ -28,6 +30,25 @@ namespace DungeonLibrary
         {
             return string.Format($"{Name}\n{Description}");
         }
+
+        public static void UseHealthPotion(Player player)
+        {
+            player.Health = player.Health + (50 + player.PlayerLevel);
+            if (player.Health >= player.MaxHealth)
+            {
+                player.Health = player.MaxHealth;
+            }
+        }//End UseHealthPotion()
+
+        public static void UseManaPotion(Player player)
+        {
+            player.Mana = player.Mana + (50 + player.PlayerLevel);
+            if (player.Mana >= player.MaxMana)
+            {
+                player.Mana = player.MaxMana;
+            }
+        }//END UserManaPotion
+
 
     }//END CLASS
 
