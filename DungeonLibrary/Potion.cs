@@ -31,18 +31,20 @@ namespace DungeonLibrary
             return string.Format($"{Name}\n{Description}");
         }
 
-        public static void UseHealthPotion(Player player)
+        public static void UseHealthPotion(Player player, Potion healthPotion)
         {
             player.Health = player.Health + (50 + player.PlayerLevel);
+            healthPotion.Quantity--;
             if (player.Health >= player.MaxHealth)
             {
                 player.Health = player.MaxHealth;
             }
         }//End UseHealthPotion()
 
-        public static void UseManaPotion(Player player)
+        public static void UseManaPotion(Player player, Potion manaPotion)
         {
             player.Mana = player.Mana + (50 + player.PlayerLevel);
+            manaPotion.Quantity--;
             if (player.Mana >= player.MaxMana)
             {
                 player.Mana = player.MaxMana;

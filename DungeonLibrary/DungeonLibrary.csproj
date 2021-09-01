@@ -51,6 +51,7 @@
     <Compile Include="Potion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race.cs" />
+    <Compile Include="RestartGame.cs" />
     <Compile Include="Spell.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>
